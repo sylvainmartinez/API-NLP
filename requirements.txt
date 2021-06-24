@@ -1,0 +1,11 @@
+beautifulsoup4
+flask
+flask_wtf
+gunicorn
+nltk
+numpy
+regex
+scikit-learn
+pickle-mixin
+wtforms
+dill
