@@ -2,18 +2,30 @@ from flask import Flask, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 import os
-from function import *
+#from app.function import *
 import nltk
 from nltk.stem.snowball import FrenchStemmer, EnglishStemmer
 from nltk.stem import WordNetLemmatizer
 import numpy as np
 import re
 from pickle import Unpickler as Upck
+import nltk
+from nltk.stem.snowball import FrenchStemmer, EnglishStemmer
+from nltk.stem import WordNetLemmatizer
 
 SECRET_KEY = os.urandom(32)
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
+
+def tokensLem(text):
+    lemmatizer = WordNetLemmatizer()
+    stemmer = EnglishStemmer()
+    tokenizer = nltk.RegexpTokenizer(r'\w+')
+    tokens = tokenizer.tokenize(text)
+    for j, word in enumerate(tokens):
+        tokens[j] = lemmatizer.lemmatize(word)
+    return tokens
 
 with open("dataCLSlabel", 'rb') as file:
     Upickler = Upck(file)
