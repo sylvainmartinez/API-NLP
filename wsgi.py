@@ -1,4 +1,4 @@
-from app.function import *
+#!/usr/bin/python3.8
 from app.main import app
 
 
