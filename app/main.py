@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 import os
-#from function import *
+
 import nltk
 from nltk.stem.snowball import FrenchStemmer, EnglishStemmer
 from nltk.stem import WordNetLemmatizer
@@ -18,6 +18,7 @@ SECRET_KEY = os.urandom(32)
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
 
+'''
 def tokensLem(text):
     lemmatizer = WordNetLemmatizer()
     stemmer = EnglishStemmer()
@@ -25,14 +26,14 @@ def tokensLem(text):
     tokens = tokenizer.tokenize(text)
     for j, word in enumerate(tokens):
         tokens[j] = lemmatizer.lemmatize(word)
-    return tokens
+    return tokens'''
 
-with open("dataCLSlabel", 'rb') as file:
+with open("dataCLSlabel2", 'rb') as file:
     Upickler = Upck(file)
     cls_u = Upickler.load()
     cls_s = Upickler.load() 
     
-with open("dataAPIlabel", 'rb') as file:
+with open("dataAPIlabel2", 'rb') as file:
     Upickler = Upck(file)
     Tag = Upickler.load()
 
