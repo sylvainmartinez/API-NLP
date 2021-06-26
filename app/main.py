@@ -27,10 +27,10 @@ def tokensLem(text):
         tokens[j] = lemmatizer.lemmatize(word)
     return tokens
 
-with open("dataCLSlabel", 'rb') as file:
-    Upickler = Upck(file)
-    cls_u = Upickler.load()
-    cls_s = Upickler.load() 
+#with open("dataCLSlabel", 'rb') as file:
+#    Upickler = Upck(file)
+#    cls_u = Upickler.load()
+#    cls_s = Upickler.load() 
     
 with open("dataAPIlabel", 'rb') as file:
     Upickler = Upck(file)
@@ -51,17 +51,17 @@ def textRg(text, Tag=Tag):
     
     # Prediction on prends en compte les 3 classes
     # ayant les plus fortes probabilité
-    pred = cls_s.predict([question])[0]
-    pred_p = cls_s.predict_proba([question])[0]
-    pred = pred[pred_p.argsort()][::-1]
-    Tag = Tag[pred_p.argsort()][::-1]
-    i=0
-    ans = []
-    while pred[i] == 1:
-        ans.append(Tag[i])
-        i += 1 
-    tag = " ".join(ans)
-    return tag
+    #pred = cls_s.predict([question])[0]
+    #pred_p = cls_s.predict_proba([question])[0]
+    #pred = pred[pred_p.argsort()][::-1]
+    #Tag = Tag[pred_p.argsort()][::-1]
+    #i=0
+    #ans = []
+    #while pred[i] == 1:
+    #    ans.append(Tag[i])
+    #    i += 1 
+    #tag = " ".join(ans)
+    return "Hello World"
 
 ############################################
 # User interface
