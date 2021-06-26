@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 import os
-from function import *
+from app.function import *
 import nltk
 from nltk.stem.snowball import FrenchStemmer, EnglishStemmer
 from nltk.stem import WordNetLemmatizer
