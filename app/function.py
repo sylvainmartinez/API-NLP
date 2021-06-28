@@ -19,7 +19,7 @@ with open("dataAPIlabel2", 'rb') as file:
 def tokensLem(text):
     lemmatizer = WordNetLemmatizer()
     stemmer = EnglishStemmer()
-    tokenizer = nltk.RegexpTokenizer(r'\w+')
+    tokenizer = nltk.RegexpTokenizer(r'\s', gaps=True)
     tokens = tokenizer.tokenize(text)
     for j, word in enumerate(tokens):
         tokens[j] = lemmatizer.lemmatize(word)
