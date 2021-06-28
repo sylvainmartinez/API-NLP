@@ -40,6 +40,7 @@ def textRg(text):
     question = re.sub(r'[^a-z+]\.{1,}|\.{1,}[^a-z]', ' ', question)
     question = re.sub(r'([^c]\#{1,})', ' ', question)
     question = re.sub(r'\w{30,}', ' ', question)
+    question = re.sub(r'www|http|https|com |org ', ' ', question)
     
     # Pretraitement
     question = tokensLem(question)
