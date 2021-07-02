@@ -10,9 +10,9 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
 
 class GreetUserForm(FlaskForm):
-    username1 = StringField(label=('Enter une question:'))
+    username1 = StringField(label=('Entrer une question:'))
     submit = SubmitField(label=('Submit'))
-    username2 = StringField(label=('Tags Suggéré(s)'))
+    username2 = StringField(label=('Tags suggéré(s)'))
 
 @app.route('/', methods=('GET', 'POST'))
 def index():

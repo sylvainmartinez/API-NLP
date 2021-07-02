@@ -17,6 +17,7 @@ with open("Tag", 'rb') as file:
 
 
 def tokensLem(text):
+    '''filtre les noms commun et lemmatize'''
     meaning = ['NN', 'NNS', 'JJ']
     listDoc = []
     lemmatizer = WordNetLemmatizer()
@@ -33,8 +34,7 @@ def tokensLem(text):
     
     
 def textRg(text):
-    '''Réponse a la question
-    proposition de Tag(s)'''
+    '''traitement text et reponse du model'''
     # en minuscule
     question = text.lower()  
 
