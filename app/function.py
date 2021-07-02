@@ -6,26 +6,31 @@ import numpy as np
 from pickle import Unpickler as Upck
 
 # Récupération du modèle
-with open("dataCLSlabel2", 'rb') as file:
+with open("model", 'rb') as file:
     Upickler = Upck(file)
     cls = Upickler.load() 
 
 # Récupération des Tags
-with open("dataAPIlabel2", 'rb') as file:
+with open("Tag", 'rb') as file:
     Upickler = Upck(file)
     Tag = Upickler.load()
 
 
 def tokensLem(text):
+    meaning = ['NN', 'NNS', 'JJ']
+    listDoc = []
     lemmatizer = WordNetLemmatizer()
-    stemmer = EnglishStemmer()
     tokenizer = nltk.RegexpTokenizer(r'\s', gaps=True)
-    tokens = tokenizer.tokenize(text)
-    for j, word in enumerate(tokens):
-        tokens[j] = lemmatizer.lemmatize(word)
-    tokens = " ".join(tokens)
-    return tokens
-
+    token = tokenizer.tokenize(text)
+    for tok in token:
+        if nltk.pos_tag([tok])[0][1] in meaning:
+            listDoc.append(lemmatizer.lemmatize(tok))
+    if len(listDoc) == 0:
+        doc = " ".join(token)
+    else:
+        doc = " ".join(listDoc)
+    return doc
+    
     
 def textRg(text):
     '''Réponse a la question
@@ -39,8 +44,9 @@ def textRg(text):
     question = re.sub(r'[^a-z]\-{1,}|\-{1,}[^a-z]', ' ', question)
     question = re.sub(r'[^a-z+]\.{1,}|\.{1,}[^a-z]', ' ', question)
     question = re.sub(r'([^c]\#{1,})', ' ', question)
+    question = re.sub(r'[\.]+\w{3,}', ' ', question)
+    question = re.sub(r'[\-]+\w{7,}', ' ', question)
     question = re.sub(r'\w{30,}', ' ', question)
-    question = re.sub(r'www|http|https|com |org ', ' ', question)
     
     # Pretraitement
     question = tokensLem(question)
@@ -52,7 +58,9 @@ def textRg(text):
     pred = pred[pred_p.argsort()][::-1]
     tag = Tag[pred_p.argsort()][::-1]
     
-    if cls.predict([question])[0].sum() == 0:
+    if question == "":
+        return ""
+    elif cls.predict([question])[0].sum() == 0:
         return tag[0]
     else:
         i=0
