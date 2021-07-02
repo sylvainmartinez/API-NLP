@@ -8,7 +8,7 @@ from pickle import Unpickler as Upck
 # Récupération du modèle
 with open("model", 'rb') as file:
     Upickler = Upck(file)
-    cls = Upickler.load() 
+    cls = Upickler.load()
 
 # Récupération des Tags
 with open("Tag", 'rb') as file:
